@@ -6,7 +6,9 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   </head>
   <body>
-    <div id="addDiv" class="col-md-8">
+    <div class="container" id="addDiv">
+    <br>
+    <h4 align="center">Please fill the form</h4>  
       <form method="post" v-on:submit.prevent="handleSubmit($event);">
         <div class="form-group">
           <label for="college">Name</label>
@@ -14,11 +16,11 @@
         </div>
         <div class="form-group">
           <label for="department">Department</label>
-          <input type="text" class="form-control" id="department" name="department" v-model="department" required="">
+          <input type="text" class="form-control" id="department" name="department" v-model="department" required="" v-transliterate="options">
         </div>
         <div class="form-group">
-          <label for="college">College</label>
-          <input type="text" class="form-control" id="college" name="college" v-model="college" required="">
+          <label for="college">Address</label>
+          <textarea rows="5" class="form-control" id="college" name="address" v-model="address" required="" v-transliterate="options"></textarea>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
@@ -61,7 +63,7 @@
           el: "#addDiv",
           data: {
            name: '',
-           college:'',
+           address:'',
            department:'',
            options: {
             sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
@@ -78,10 +80,10 @@
            data = {};
            data['name'] = this.name;
            data['department'] = this.department;
-           data['college'] = this.college;
+           data['address'] = this.address;
 
            $.ajax({
-            url: 'add',
+            url: 'your url here',
             data: data,
             type: "POST",
             dataType: 'json',
